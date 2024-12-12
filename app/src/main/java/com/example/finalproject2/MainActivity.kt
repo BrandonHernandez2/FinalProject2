@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -37,18 +39,19 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FinalProject2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+
                 }
             }
         }
     }
-}
+
+var isVentorAveOwned = false
+var isAlanticAveOwned = false
+var isMarvinGardensOwned = false
 
 @Composable
-fun Greeting(modifier: Modifier = Modifier) {
+fun Monopoly(modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,57 +80,116 @@ fun Logo(modifier: Modifier, textColor: Color){
                 .background(
                     color = Color.White
                 )
+
         )
         Text(
-            text = "Money Tracker",
+            text = "Properties",
             color = textColor,
             modifier = modifier
 
-        )
-        Text(
-            text = stringResource(R.string.totalMoney),
-            style = MaterialTheme.typography.displaySmall,
-            fontSize = 10.sp,
-            modifier = Modifier
-                .align(alignment = Alignment.Start)
-        )
-        Spacer(modifier = Modifier.height(40.dp))
-    }
-}
 
-@Composable
-fun moneyClicker(
-    textLabelResourceId: Int,
-    drawableResourceId: Int,
-    contentDescriptionResourceId: Int,
-    onImageClick: () -> Unit,
-    modifier: Modifier = Modifier
-){
-    Box(
-        modifier = modifier
-    ){
-        Column(modifier = modifier) {
-            Button(
-                onClick = onImageClick,
-            ){
-                Image(
-                    painter = painterResource(drawableResourceId),
-                    contentDescription = stringResource(contentDescriptionResourceId),
-                )
-            }
+
+        )
+        Button(
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            onClick = { isVentorAveOwned = true },
+            shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp),
+
+
+
+
+
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.ventor_ave),
+                contentDescription = null
+            )
+
         }
+
+        }
+
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+        onClick = { isAlanticAveOwned = true },
+        shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
+
+
+
+
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.alantic_ave),
+            contentDescription = null
+        )
+
+    }
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+        onClick = { isMarvinGardensOwned = true},
+        shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
+
+
+
+
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.marvingardens),
+            contentDescription = null
+        )
+
     }
 
-}
+    }
 
-fun Button(onClick: () -> Unit) {
+//
+//@Composable
+//fun moneyClicker(
+//    textLabelResourceId: Int,
+//    drawableResourceId: Int,
+//    contentDescriptionResourceId: Int,
+//    onImageClick: () -> Unit,
+//    modifier: Modifier = Modifier
+//){
+//    Box(
+//        modifier = modifier
+//    ){
+//        Column(modifier = modifier) {
+//            Button(
+//                onClick = onImageClick,
+//            ){
+//                Image(
+//                    painter = painterResource(drawableResourceId),
+//                    contentDescription = stringResource(contentDescriptionResourceId),
+//                )
+//            }
+//        }
+//    }
+//
+//}
 
-}
+//@Composable
+//fun Button(onClick: () -> Unit, modifier: Modifier) {
+//    Button(
+//        onClick = onClick
+//    ){
+//        Image(painter = painterResource(id = R.drawable.a100bill),
+//            contentDescription = null,
+//            contentScale = ContentScale.Fit,
+//            modifier = modifier
+//                .height(40.dp)
+//                .padding(2.dp)
+//                .background(
+//                    color = Color.White
+//                )   )
+//    }
+//
+//}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     FinalProject2Theme {
-        Greeting()
+        Monopoly()
     }
 }
