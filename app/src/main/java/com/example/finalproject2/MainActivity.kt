@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -67,6 +68,18 @@ fun Monopoly(modifier: Modifier = Modifier) {
     }
 }
 
+fun PropCheck(){
+
+    if(isVentorAveOwned == true){
+        println("You Own Ventor Ave!")
+    }else if(isAlanticAveOwned == true){
+        println("You Own Alantic Ave!")
+    }else if(isMarvinGardensOwned == true){
+        println("You Own Marvin Gardens!")
+    }
+
+}
+
 @Composable
 fun Logo(modifier: Modifier, textColor: Color){
     Column(horizontalAlignment = Alignment.CenterHorizontally){
@@ -82,14 +95,23 @@ fun Logo(modifier: Modifier, textColor: Color){
                 )
 
         )
+//        Image(
+//            painter = painterResource(id = R.drawable.propword),
+//            contentDescription = null,
+//            modifier = Modifier.clickable(onClick = { PropCheck() })
+//        )
         Text(
             text = "Properties",
-            color = textColor,
+            color = Color.White,
             modifier = modifier
-
+                .clickable(
+                    onClick = { PropCheck() }
+                )
+                .background(color = Color.Black)
 
 
         )
+
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),
             onClick = { isVentorAveOwned = true },
@@ -142,49 +164,7 @@ fun Logo(modifier: Modifier, textColor: Color){
 
     }
 
-//
-//@Composable
-//fun moneyClicker(
-//    textLabelResourceId: Int,
-//    drawableResourceId: Int,
-//    contentDescriptionResourceId: Int,
-//    onImageClick: () -> Unit,
-//    modifier: Modifier = Modifier
-//){
-//    Box(
-//        modifier = modifier
-//    ){
-//        Column(modifier = modifier) {
-//            Button(
-//                onClick = onImageClick,
-//            ){
-//                Image(
-//                    painter = painterResource(drawableResourceId),
-//                    contentDescription = stringResource(contentDescriptionResourceId),
-//                )
-//            }
-//        }
-//    }
-//
-//}
 
-//@Composable
-//fun Button(onClick: () -> Unit, modifier: Modifier) {
-//    Button(
-//        onClick = onClick
-//    ){
-//        Image(painter = painterResource(id = R.drawable.a100bill),
-//            contentDescription = null,
-//            contentScale = ContentScale.Fit,
-//            modifier = modifier
-//                .height(40.dp)
-//                .padding(2.dp)
-//                .background(
-//                    color = Color.White
-//                )   )
-//    }
-//
-//}
 
 @Preview(showBackground = true)
 @Composable
