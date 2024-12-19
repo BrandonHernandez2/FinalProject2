@@ -1,12 +1,12 @@
 package com.example.finalproject2
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -51,6 +52,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+var isVentorAveOwned = false
+var isAlanticAveOwned = false
+var isMarvinGardensOwned = false
 
 @Composable
 fun monopolyApp(modifier: Modifier = Modifier) {
@@ -201,9 +206,97 @@ fun monopolyApp(modifier: Modifier = Modifier) {
             )
         }
         DiceImageandImageForDie1(modifier = modifier)
+        Column (
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier.background(
+                color = Color.White
+            )
+        ){
+            propertiesList(
+                modifier
+                    .align(alignment = Alignment.CenterHorizontally),
+                Color.Black,
+            )
+        }
+
         Spacer(modifier = Modifier.height(10.dp))
     }
     }
+
+fun PropCheck(){
+
+    if(isVentorAveOwned == true){
+        println("You Own Ventor Ave!")
+    }else if(isAlanticAveOwned == true){
+        println("You Own Alantic Ave!")
+    }else if(isMarvinGardensOwned == true){
+        println("You Own Marvin Gardens!")
+    }
+
+}
+
+@Composable
+fun propertiesList(modifier: Modifier, textColor: Color){
+    Column(horizontalAlignment = Alignment.CenterHorizontally){
+        Text(
+            text = "Properties",
+            color = Color.White,
+            modifier = modifier
+                .clickable(
+                    onClick = { PropCheck() }
+                )
+                .background(color = Color.Black)
+
+
+        )
+
+        Button(
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            onClick = { isVentorAveOwned = true },
+            shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp),
+            ){
+            Image(
+                painter = painterResource(id = R.drawable.ventor_ave),
+                contentDescription = null
+            )
+
+        }
+
+    }
+
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+        onClick = { isAlanticAveOwned = true },
+        shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
+
+
+
+
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.alantic_ave),
+            contentDescription = null
+        )
+
+    }
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+        onClick = { isMarvinGardensOwned = true},
+        shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
+
+
+
+
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.marvingardens),
+            contentDescription = null
+        )
+
+    }
+
+}
 
 fun calcAmount(totalMoney: Int): String {
     var total = totalMoney
