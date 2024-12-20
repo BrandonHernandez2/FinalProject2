@@ -269,10 +269,6 @@ fun propertiesList(modifier: Modifier, textColor: Color){
         colors = ButtonDefaults.buttonColors(containerColor = Color.White),
         onClick = { isAlanticAveOwned = true },
         shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
-
-
-
-
     ){
         Image(
             painter = painterResource(id = R.drawable.alantic_ave),
@@ -284,10 +280,6 @@ fun propertiesList(modifier: Modifier, textColor: Color){
         colors = ButtonDefaults.buttonColors(containerColor = Color.White),
         onClick = { isMarvinGardensOwned = true},
         shape = RoundedCornerShape(topStart = 10.dp, bottomEnd = 10.dp)
-
-
-
-
     ){
         Image(
             painter = painterResource(id = R.drawable.marvingardens),
